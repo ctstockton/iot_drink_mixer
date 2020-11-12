@@ -12,12 +12,13 @@ class pump(object):
     """
     An interface for interacting with the pumps.
     """
-    def __init__(self, pin_id, name='', ingr='', ingr_id=0):
+    def __init__(self, pin_id, number, name='', ingr='', ingr_id=0):
         self.name = name
+        self.number = number
         self.ingredient = ingr
         self.ingredient_id = ingr_id
         self.pin_id = pin_id
-        GPIO.setup(pin_id, GPIO.OUT, initial=GPIO.LOW)
+        #GPIO.setup(pin_id, GPIO.OUT, initial=GPIO.HIGH)
 
     def get_ingredient(self):
         return self.ingredient
@@ -45,5 +46,8 @@ class pump(object):
 
     def is_alive(self):
         return self.pump_thread.is_alive()
+
+    def get_number(self):
+        return self.number
 
     
