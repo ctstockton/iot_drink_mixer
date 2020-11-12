@@ -32,13 +32,19 @@ class pump(object):
     def set_ingredient_id(self, ingr_id):
         self.ingredient_id = ingr_id
 
-    def pump_fluid(self, time):
-        GPIO.output(self.pin_id, GPIO.HIGH)
-        time.sleep(time)
-        GPIO.output(self.pin_id, GPIO.LOW)
+    def pump_fluid(self, wtime):
+        #GPIO.output(self.pin_id, GPIO.LOW)
+        time.sleep(wtime)
+        '''i=0
+        while(i<wtime):
+            print(self.name+': '+str(i)+'s')
+            time.sleep(1)
+            i += 1
+        print(self.name+': '+str(i)+'s ended')'''
+        #GPIO.output(self.pin_id, GPIO.HIGH)
 
-    def run(self, time):
-        self.pump_thread = threading.Thread(target=self.run, args=(time))
+    def run(self, wtime):
+        self.pump_thread = threading.Thread(target=self.pump_fluid, args=(wtime,))
         self.pump_thread.start()
 
     def wait_for_finish(self):
